@@ -1,0 +1,152 @@
+query findAdministList($namelike:String!,$paginator: paginator){
+  AdministList(qfilter:{
+    combinator:AND
+    key:"name"
+    operator:LIKE
+    value:$namelike
+  },paginator:$paginator){
+    totalPages
+    totalElements
+    content{
+      id
+      number
+      name
+      username
+      tel
+      disabled
+      updatetime(OrderBy:DESC)
+      createtime(OrderBy:DESC)
+    }
+  }
+}
+
+query RoleList{
+  RoleList{
+    totalPages
+    totalElements
+    content{
+      id
+      name
+    }
+  }
+}
+
+mutation administUpdate($administ:Administ_!){
+  administ_update(administ:$administ){
+    id
+  }
+}
+
+query PrivilegeList($paginator: paginator){
+  PrivilegeList(paginator:$paginator){
+    totalPages
+    totalElements
+    content{
+      id
+      name
+    }
+  }
+}
+
+
+query AdministList($namelike:String!,$paginator: paginator){
+  AdminList(qfilter:{
+      operator: NOTEQUEAL
+      key:"roleItems.role.name"
+      value:"销售顾问"
+    	combinator:AND
+    	next:{
+            key:"username"
+   				 	operator:LIKE
+   				 	value:$namelike
+   				  combinator:OR
+        next:{
+              operator:LIKE
+      				key:"phone"
+      				value:$namelike
+        }
+      }
+  },paginator:$paginator){
+    totalPages
+    totalElements
+    content{
+      username
+      createtime
+      number
+      disabled
+      phone
+      id
+      store {
+        id
+        name
+      }
+      roleItems{
+        role{
+          name
+          id
+        }
+      }
+    }
+  }
+}
+
+
+mutation addAdminist($administ: Administ_!){
+  administ_add(administ: $administ){
+    id
+  }
+}
+
+mutation editAdminist($administ: Administ_!){
+  mlshop_updateadminist(administ: $administ){
+    id
+  }
+}
+
+mutation editAdministPassWord($administ: Administ_!){
+  mlshop_administmodifypassword(administ: $administ){
+    id
+  }
+}
+
+
+
+
+mutation admin_storeAdministrator($admin: Admin_!) {
+  admin_storeAdministrator(admin: $admin) {
+    id
+  }
+}
+
+mutation admin_salesConsultant($admin: Admin_!) {
+  admin_salesConsultant(admin: $admin) {
+    id
+  }
+}
+
+mutation admin_platformAdministrator($admin: Admin_!) {
+  admin_platformAdministrator(admin: $admin) {
+    id
+  }
+}
+
+query getStoreList {
+  StoreList {
+    content {
+      name
+      id
+    }
+  }
+}
+
+mutation admin_changeOtherPassword($password: String!, $username: String!) {
+  admin_changeOtherPassword(password: $password, username: $username) {
+    id
+  }
+}
+
+mutation admin_delete($id: String!) {
+  admin_delete(id: $id) {
+    id
+  }
+}
