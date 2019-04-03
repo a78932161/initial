@@ -27,6 +27,7 @@ export const constantRouterMap = [
     path: '/',
     component: Layout,
     name: 'Dashboard',
+    meta: {title: '主页', icon: '权限'},
     hidden: true,
     children: [{
       path: 'dashboard',
@@ -394,6 +395,21 @@ export const asyncRouterMap = [
         component: _import('permission/role'),
         meta: {title: '账号', icon: '账号'},
       },
+    ]
+  },
+  {
+    path: '/rs',
+    component: Layout,
+    redirect: '/rs/index',
+    name: 'rs',
+    meta: {title: '权限', icon: '权限'},
+    children: [
+      {
+        path: 'index',
+        name: 'rs',
+        component: _import('personnel/index'),
+        meta: {title: '人员管理', icon: '账号'},
+      }
     ]
   },
 

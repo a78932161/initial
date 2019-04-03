@@ -9,7 +9,6 @@ import store from './store'
 
 import '@/icons' // icon
 import VueQuillEditor from 'vue-quill-editor'
-
 import '@/permission' // permission control
 import {baseURL} from "api/config";
 

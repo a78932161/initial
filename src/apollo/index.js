@@ -17,8 +17,8 @@ import capture from './capture';
 import store from "../store";
 
 const httpLink = new HttpLink({
-  uri: 'https://www.buymycar.cn/carmall/graphql',
-  // uri: 'http://115.159.154.194/carmall/graphql'
+  // uri: 'https://www.buymycar.cn/carmall/graphql',
+  uri: 'http://192.168.50.88:8080/graphql'
 });
 
 
